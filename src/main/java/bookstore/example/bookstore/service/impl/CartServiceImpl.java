@@ -23,6 +23,20 @@ public class CartServiceImpl implements CartService {
             CartDTO cartDTO = new CartDTO();
             cartDTO.setUserId(item.getUserId());
             cartDTO.setId(item.getId());
+            cartDTO.setProductId(item.getProductId());
+            cartDTO.setNumber(item.getNumber());
+//            cartDTO.setProductTotalPrice(item.getNumber()* cartDTO.getProductPrice());
+//            result.add(cartDTO);
+            if(item.getProductEntity() !=null){
+                cartDTO.setProductName(item.getProductEntity().getProductName());
+                cartDTO.setProductAuthor(item.getProductEntity().getProductAuthor());
+                cartDTO.setProductQuantity(item.getProductEntity().getProductQuantity());
+                cartDTO.setProductPrice(item.getProductEntity().getProductPrice());
+                cartDTO.setProductImage(item.getProductEntity().getProductImage());
+                cartDTO.setProductDescribe(item.getProductEntity().getProductDescribe());
+                cartDTO.setCategoryId(item.getProductEntity().getCategoryId());
+            }
+            cartDTO.setProductTotalPrice(item.getNumber()* cartDTO.getProductPrice());
             result.add(cartDTO);
         }
         return  result;
